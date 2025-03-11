@@ -1,0 +1,16 @@
+{{#partial "contenido"}}
+    <div class="p-4">
+        <h2 class="fw-normal">Crear nueva comunidad</h2>
+        <hr>
+        <form method="POST" action="/comunidades/crear">
+            <div class="m-2 pe-5 ps-5 d-flex align-items-center justify-content-center flex-column">
+                <label for="nombreComunidad" class="form-label"></label>
+                <input type="text" class="form-control border-1 border-black w-50" id="nombreComunidad" name="nombreComunidad" placeholder="Nombre de Comunidad">
+                <p class="mt-2">Una vez creada la comunidad, dentro de ella podrá añadir Servicios</p>
+                <button type="submit" class="btn ver-comunidad btn-primario shadow-lg w-25 mt-2 border-0 fs-4 p-1">Crear</button>
+                <a href="/comunidades" class="btn btn-secundario border-success shadow w-25 mt-3 border-1 fs-5 p-1">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

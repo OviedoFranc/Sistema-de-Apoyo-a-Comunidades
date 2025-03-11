@@ -1,0 +1,46 @@
+{{#partial "contenido"}}
+    <div class="page-title row-cols-auto pt-3 pe-3 ps-3 pb-5 text-center d-flex justify-content-center align-items-center flex-column">
+        <a href="/comunidades" class="volver align-self-start fs-4 text-decoration-none d-none d-lg-block"> < Volver </a>
+        <a href="/comunidades" class="volver align-self-start fs-4 text-decoration-none d-sm-block d-lg-none"><</a>
+        <h1 class="white-text">{{comunidad.nombreComunidad}}</h1>
+        {{#if admin}}
+        <a href="/comunidades/{{comunidad.id}}/editar" class="btn btn-secundario border-success shadow w-25 mt-3 mb-3 border-1 fs-5 p-1">Administrar</a>
+        {{/if}}
+        <p class="m-0 text-light">Tu rol ahora mismo es de: <span class="fw-semibold">{{membresia.tipoDeUsuario}}</span></p>
+        <a href="/comunidades/{{comunidad.id}}/cambiar_rol" class="btn btn-secundario border-success shadow w-25 mt-1 border-1 fs-5 p-1">Cambiar rol</a>
+    </div>
+    <div class="mt-3 ms-5 me-5 text-md-start text-center">
+        <h2 class="fw-normal">Servicios Disponibles</h2>
+        <hr>
+        <div class="row card-group text-center justify-content-sm-center justify-content-md-start">
+            {{#each serviciosSinIncidentes}}
+                <div class="card m-sm-2 m-md-4 shadow border-light rounded-4" style="max-width: 18rem; min-width: 18rem; height: 28rem">
+                    <h3 class="card-title mt-3 align-self-center">{{this.nombre}}</h3>
+                    <p class="card-text fw-bold">{{this.establecimiento.nombre}} - {{this.establecimiento.entidad.nombre}}</p>
+                    <p class="card-body h-100" style="max-height: 18rem; overflow: hidden">{{this.descripcion}}</p>
+                    <a href="/comunidades/{{comunidad.id}}/servicios/{{this.id}}" class="btn btn-primario mb-4">Ver Servicio</a>
+                </div>
+            {{/each}}
+            {{#if admin}}
+                <div class="card m-sm-2 m-md-4 shadow border-light rounded-4 d-flex justify-content-center align-items-center" style="max-width: 18rem; min-width: 18rem; background-color: rgb(233, 233, 233); height: 28rem;">
+                    <a href="/comunidades/{{comunidad.id}}/servicios/agregar"><img src="/img/add-img.png" class="img-fluid add-image" alt="Add"></a>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="mt-3 ms-5 me-5 text-md-start text-center">
+        <h2 class="fw-normal">Servicios con Incidentes</h2>
+        <hr>
+        <div class="row card-group text-center justify-content-sm-center justify-content-md-start">
+            {{#each serviciosConIncidentes}}
+                <div class="card m-sm-2 m-md-4 shadow border-light rounded-4" style="max-width: 18rem; min-width: 18rem; height: 28rem">
+                    <h3 class="card-title mt-3 align-self-center">{{this.nombre}}</h3>
+                    <p class="card-text fw-bold">{{this.establecimiento.nombre}} - {{this.establecimiento.entidad.nombre}}</p>
+                    <p class="card-body h-100" style="max-height: 18rem; overflow: hidden">{{this.descripcion}}</p>
+                    <a href="/comunidades/{{comunidad.id}}/servicios/{{this.id}}" class="btn btn-primario mb-4">Ver Servicio</a>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/partial}}
+{{> templates/base }}

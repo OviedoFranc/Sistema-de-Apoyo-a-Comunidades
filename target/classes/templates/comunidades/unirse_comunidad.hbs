@@ -1,0 +1,27 @@
+{{#partial "contenido"}}
+    <div class="p-4">
+        <h2 class="fw-normal">Unirse a una Comunidad</h2>
+        <hr>
+        <form method="POST" action="/comunidades/unirse">
+            <div class="m-2 pe-5 ps-5 d-flex align-items-center justify-content-center flex-column">
+                <label for="comunidad" class="form-label"></label>
+                <select class="form-select w-50" aria-label="Default select example" required id="comunidad" name="comunidad">
+                    <option disabled selected>Seleccione la comunidad a la que quiere unirse</option>
+                    {{#each comunidades}}
+                        <option value="{{this.id}}">{{this.nombreComunidad}}</option>
+                    {{/each}}
+                </select>
+                <label for="rol" class="form-label"></label>
+                <select class="form-select w-50" aria-label="Default select example" required id="rol" name="rol">
+                    <option disabled selected>Seleccione su rol dentro de la comunidad</option>
+                    {{#each roles}}
+                        <option value="{{this.name}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <button type="submit" class="btn ver-comunidad btn-primario shadow-lg w-25 mt-4 border-0 fs-4 p-1">Unirse</button>
+                <a href="/comunidades" class="btn btn-secundario border-success shadow w-25 mt-3 border-1 fs-5 p-1">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

@@ -1,0 +1,37 @@
+{{#partial "contenido"}}
+    <div class="page-title text-center p-5">
+        <h1 class="white-text">Editar Perfil</h1>
+    </div>
+
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        {{#if contraseniaInvalida}}
+            <p class="mt-4 mb-2" style="color: red">Error: La contraseña es muy debil. Prueba con otra combinando mayúsculas, minúsculas y números.</p>
+        {{/if}}
+        {{#if usernameInvalido}}
+            <p class="mt-4 mb-2" style="color: red">Error: El usuario ya está en uso. Prueba con ingresando otro usuario.</p>
+        {{/if}}
+        <form method="post" action="/editar_perfil_designada">
+
+            <label for="nombre" class="gray-text form-label mt-3 mb-0">Nombre</label>
+            <input type="text" class="form-control border-1 border-black" id="nombre" name="nombre" value="{{user.nombre}}">
+
+            <label for="apellido" class="gray-text form-label mt-3 mb-0">Apellido</label>
+            <input type="text" class="form-control border-1 border-black" id="apellido" name="apellido" value="{{user.apellido}}">
+
+            <label for="username" class="gray-text form-label mt-3 mb-0">Usuario</label>
+            <input type="text" class="form-control border-1 border-black" id="username" name="username" value="{{user.usuario.username}}">
+
+            <label for="password" class="gray-text form-label mt-3 mb-0">Contraseña</label>
+            <input type="text" class="form-control border-1 border-black" id="password" name="password" value="{{user.usuario.contrasenia}}">
+
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <button type="submit" class="btn btn-primario shadow-lg w-100 mb-3 mt-4 border-0 fs-4 p-1">Guardar cambios</button>
+                <a href="/rankings" class="btn btn-secundario shadow-lg border-success w-50 mt-2 mb-3 border-1 fs-5 p-1">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+
+
+{{/partial}}
+{{> templates/base_pdesignada }}

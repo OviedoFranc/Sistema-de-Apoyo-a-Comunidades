@@ -1,0 +1,143 @@
+:root {
+    --main-primary-color: #007C52;
+    --main-darker-primary-color: #005a3c;
+    --main-active-primary-color: #00422c;
+    --page-title-bg-color: #272727;
+    --gray-text-color: #696969;
+  }
+
+.bg {
+    background-image: url(/img/login-img.jpg);
+    min-height: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.page-title {
+    background-color: var(--page-title-bg-color);
+}
+
+.white-text {
+    color: white;
+}
+
+.gray-text {
+    color: var(--gray-text-color);
+}
+
+.registro {
+    color: var(--main-primary-color);
+}
+.registro:hover {
+    color: var(--main-darker-primary-color);
+}
+.registro:active {
+    color: var(--main-active-primary-color);
+}
+
+.add-image {
+    width: 120px;
+    height: 120px;
+    opacity: 0.4;
+}
+.add-image:hover {
+    opacity: 0.6;
+}
+.add-image:active {
+    opacity: 0.7;
+}
+
+.btn-primario {
+    background-color: var(--main-primary-color) !important;
+    color: white !important;
+}
+.btn-primario:hover {
+    background-color: var(--main-darker-primary-color) !important;
+}
+.btn-primario:active {
+    background-color: var(--main-active-primary-color) !important; 
+}
+
+.btn-secundario {
+    background-color: #FFF !important;
+    color: var(--main-primary-color) !important;
+}
+.btn-secundario:hover {
+    background-color: #e7e7e7 !important;
+}
+.btn-secundario:active {
+    background-color: #d1d1d1 !important; 
+}
+
+.offcanvas-header {
+    background-color: rgb(233, 233, 233);
+}
+
+.current-page {
+    color: #005a3c !important;
+}
+
+.tabla-container {
+    margin-left: 20px;
+    width: 1700px;
+    height: 316px;
+    flex-shrink: 0;
+}
+
+.nav-link:hover {
+    font-size: 1.3rem !important;
+}
+
+.descripcion {
+    max-width: 50rem;
+    background-color: white;
+    opacity: 0.8;
+    padding: 0.8rem 0.8rem 0 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.volver {
+    color: white;
+}
+.volver:hover {
+    color: var(--main-primary-color);
+}
+
+.volver:active {
+    color: var(--main-active-primary-color);
+}
+.btn-close {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+}
+
+@media (max-width: 767px) {
+    .bg {
+        background-image: url(/img/login-img.jpg);
+        min-height: 50%;
+        height: 65vh;
+        background-repeat: no-repeat;
+    }
+
+    .card-group {
+        justify-content: center !important;
+    }
+
+    .modal-btns {
+        flex-direction: column-reverse;
+    }
+    .modal-btns .btn {
+        width: 12rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .modal-btns {
+        flex-direction: column-reverse;
+    }
+    .modal-btns .btn {
+        margin-top: 1rem;
+        width: 12rem;
+    }
+}

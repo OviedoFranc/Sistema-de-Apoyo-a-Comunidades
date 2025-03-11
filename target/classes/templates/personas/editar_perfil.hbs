@@ -1,0 +1,116 @@
+{{#partial "contenido"}}
+    <div class="page-title text-center p-5">
+        <h1 class="white-text">Editar Perfil</h1>
+    </div>
+
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        {{#if contraseniaInvalida}}
+            <p class="mt-4 mb-2" style="color: red">Error: La contraseña es muy debil. Prueba con otra combinando mayúsculas, minúsculas y números.</p>
+        {{/if}}
+        {{#if usernameInvalido}}
+            <p class="mt-4 mb-2" style="color: red">Error: El usuario ya está en uso. Prueba con ingresando otro usuario.</p>
+        {{/if}}
+        {{#if ubicacionInvalida}}
+            <p class="mt-4 mb-2" style="color: red">Error: La localidad ingresada no es válida. Inténtelo nuevamente.</p>
+        {{/if}}
+        <form method="post" action="/editar_perfil" class="registro-form">
+
+            <label for="nombre" class="gray-text form-label mt-3 mb-0">Nombre</label>
+            <input type="text" class="form-control border-1 border-black" id="nombre" name="nombre" value="{{user.nombre}}">
+
+            <label for="apellido" class="gray-text form-label mt-3 mb-0">Apellido</label>
+            <input type="text" class="form-control border-1 border-black" id="apellido" name="apellido" value="{{user.apellido}}">
+
+            <label for="username" class="gray-text form-label mt-3 mb-0">Usuario</label>
+            <input type="text" class="form-control border-1 border-black" id="username" name="username" value="{{user.usuario.username}}">
+
+            <label for="password" class="gray-text form-label mt-3 mb-0">Contraseña</label>
+            <input type="text" class="form-control border-1 border-black" id="password" name="password" value="{{user.usuario.contrasenia}}">
+
+            <label for="provincia" class="gray-text form-label mt-3 mb-0">Provincia</label>
+            <select id="selectProvincia" class="form-select w-100" name="selectProvincia" required>
+                <option disabled selected>Seleccione una provincia</option>
+                {{#each provincias}}
+                    <option value="{{this.id}}">{{this.nombre}}</option>
+                {{/each}}
+            </select>
+
+            <label for="localidad" class="gray-text form-label mt-3 mb-0">Localidad</label>
+            <input type="text" class="form-control border-1 border-black" id="localidad" name="localidad" placeholder="Nombre de su localidad" required>
+
+            <label for="medio" class="gray-text form-label mt-3 mb-0">Medio de notificación</label>
+            <select id="selectMedioNotificacion" onchange="selectMedioCheck(this);" class="form-select w-100" name="selectMedio" required>
+                <option disabled selected>Seleccione un medio de notificacion</option>
+                <option id="celu" value="1">Celular</option>
+                <option id="mail" value="2">Email</option>
+            </select>
+            <div id="celu-input" style="display: none;">
+                <label for="celular"></label>
+                <input type="text" name="celular" id="celular" class="form-control border-1 border-black w-100" value="{{celular}}">
+            </div>
+            <div id="email-input" style="display: none;">
+                <label for="email"></label>
+                <input type="email" name="email" id="email" class="form-control border-1 border-black w-100" value="{{email}}">
+            </div>
+
+            <label for="configuracion" class="gray-text form-label mt-3 mb-0">Tipo de notificaciones</label>
+            <select id="selectConfNotificacion" onchange="selectConfigCheck(this);" class="form-select w-100" name="selectConfig" required>
+                <option disabled selected>¿Cuándo desea recibir las notificaciones?</option>
+                <option id="celu" value="1">Cuando suceden</option>
+                <option id="mail" value="2">Sin apuros</option>
+            </select>
+            <p id="horarios-texto" style="display: none;" class="mt-2 mb-0 gray-text">Configure horarios de notificación.</p>
+            <div class="d-flex align-items-center justify-content-center flex-column">
+                <div id="horario1-input" style="display: none;">
+                    <label for="horario1"></label>
+                    <input type="time" name="horario1" id="horario1" class="form-control border-1 border-black w-auto">
+                </div>
+                <div id="horario2-input" style="display: none;">
+                    <label for="horario2"></label>
+                    <input type="time" name="horario2" id="horario2" class="form-control border-1 border-black w-auto">
+                </div>
+                <div id="horario3-input" style="display: none;">
+                    <label for="horario3"></label>
+                    <input type="time" name="horario3" id="horario3" class="form-control border-1 border-black w-auto">
+                </div>
+                <div id="horario4-input" style="display: none;">
+                    <label for="horario4"></label>
+                    <input type="time" name="horario4" id="horario4" class="form-control border-1 border-black w-auto">
+                </div>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <button type="submit" class="btn btn-primario shadow-lg w-75 mb-3 mt-4 border-0 fs-4 p-1">Guardar cambios</button>
+                <a href="/comunidades" class="btn btn-secundario shadow-lg border-success w-50 mt-2 mb-3 border-1 fs-5 p-1">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        function selectMedioCheck(){
+            if(document.getElementById("selectMedioNotificacion").value == "1") {
+                document.getElementById("celu-input").style.display = "block";
+                document.getElementById("email-input").style.display = "none";
+            } else if (document.getElementById("selectMedioNotificacion").value == "2") {
+                document.getElementById("celu-input").style.display = "none";
+                document.getElementById("email-input").style.display = "block";
+            }
+        }
+        function selectConfigCheck(){
+            if(document.getElementById("selectConfNotificacion").value == "1") {
+                document.getElementById("horarios-texto").style.display = "none";
+                document.getElementById("horario1-input").style.display = "none";
+                document.getElementById("horario2-input").style.display = "none";
+                document.getElementById("horario3-input").style.display = "none";
+                document.getElementById("horario4-input").style.display = "none";
+            } else if (document.getElementById("selectConfNotificacion").value == "2") {
+                document.getElementById("horarios-texto").style.display = "block";
+                document.getElementById("horario1-input").style.display = "inline";
+                document.getElementById("horario2-input").style.display = "inline";
+                document.getElementById("horario3-input").style.display = "inline";
+                document.getElementById("horario4-input").style.display = "inline";
+            }
+        }
+    </script>
+{{/partial}}
+{{> templates/base }}

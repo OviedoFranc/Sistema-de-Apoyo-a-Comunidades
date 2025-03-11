@@ -1,0 +1,59 @@
+{{#partial "contenido"}}
+    <div class="mt-3 ms-5 me-5 text-md-start text-center">
+        <h2 class="fw-normal">Servicios</h2>
+        <p>Si no encuentra el Servicio que quiere añadir puede crearlo debajo</p>
+            <h2 class="fw-normal">Crear Servicio</h2>
+            <hr>
+            <form method="POST" action="/comunidades/{{comunidad}}/servicios/crear" class="crear-servicio-form">
+                <div class="m-2 pe-5 ps-5 d-flex align-items-center justify-content-center flex-column">
+                    <label for="nombreServicio" class="form-label"></label>
+                    <input type="text" class="form-control border rounded w-50" id="nombreServicio" name="nombreServicio" placeholder="Nombre de Servicio">
+                    <label for="descripcionServicio" class="form-label"></label>
+                    <textarea class="form-control rounded p-2 w-50" name="descripcionServicio" id="descripcionServicio" cols="30" rows="10" placeholder="Añade una breve descripción sobre el servicio ..." style="resize: none;"></textarea>
+                    <select class="form-select w-50 mt-2" aria-label="Default select example" required id="establecimiento" name="establecimiento">
+                        <option disabled selected>Seleccione el establecimiento al cual pertenece el servicio</option>
+                        {{#each establecimientos}}
+                            <option value="{{this.id}}">{{this.nombre}} - {{this.entidad.nombre}}</option>
+                        {{/each}}
+                    </select>
+                    <button type="submit" class="btn btn-primario shadow-lg w-25 mt-3 border-0 fs-4 p-1">Crear</button>
+                </div>
+            </form>
+    </div>
+    <hr>
+    <div class="mt-3 ms-5 me-5 text-md-start text-center">
+        <input class="w-100 rounded p-1 mt-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar servicio" title="Buscar servicio">
+        <hr>
+        <div class="row card-group text-center justify-content-sm-center justify-content-md-start">
+            {{#each servicios}}
+                <div class="card m-sm-2 m-md-4 shadow border-light rounded-4" style="max-width: 18rem; min-width: 18rem; height: 28rem">
+                    <h3 class="card-title mt-3 align-self-center">{{this.nombre}}</h3>
+                    <p class="card-text fw-bold">{{this.establecimiento.nombre}} - {{this.establecimiento.entidad.nombre}}</p>
+                    <p class="card-body h-100" style="max-height: 18rem; overflow: hidden">{{this.descripcion}}</p>
+                    <form method="POST" action="/comunidades/{{comunidad}}/servicios/agregar" class="agregar-servicio-form">
+                        <input type="hidden" id="idServicio" name="idServicio" value="{{this.id}}">
+                        <button type="submit" class="btn btn-primario mb-4">Agregar Servicio</button>
+                    </form>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <script>
+        function myFunction() {
+            var input, filter, servicios, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            servicios = document.getElementsByClassName("card")
+            for (i = 0; i < servicios.length; i++) {
+                txtValue = servicios[i].textContent || servicios[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    servicios[i].style.display = "";
+                } else {
+                    servicios[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+{{/partial}}
+{{> templates/base }}

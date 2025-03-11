@@ -1,0 +1,25 @@
+{{#partial "contenido"}}
+    <div class="mt-5 ms-5 me-5 text-md-start align-items-center">
+        <h2 class="fw-normal">Fusionar comunidades</h2>
+        <hr>
+        <div class="mt-4 container-fluid">
+            {{#each listado}}
+                <div class="shadow-sm p-3 fw-semibold d-flex flex-row justify-content-between align-items-center">
+                    <p class="m-0"><span class="gray-text">[{{this.unaComunidad.nombre}}] - [{{this.otraComunidad.nombre}}]</span></p>
+                    <div>
+                        <form method="POST" action="/comunidades/fusionar" id="fusionar-c{{@index}}">
+                            <input type="hidden" id="idComunidad1" name="idComunidad1" value="{{this.unaComunidad.id}}">
+                            <input type="hidden" id="idComunidad2" name="idComunidad2" value="{{this.otraComunidad.id}}">
+                        </form>
+                        <button type="submit" class="btn btn-success" form="fusionar-c{{@index}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/partial}}
+{{> templates/base_admin }}

@@ -1,0 +1,37 @@
+{{#partial "contenido"}}
+    <div class="page-title text-center p-5">
+        <h1 class="white-text">Mis Comunidades</h1>
+    </div>
+    <div class="row col-12 align-items-center justify-content-center m-0">
+        {{#each comunidades}}
+            <div class="card m-5 d-inline-block p-3 shadow border-light" style="width: 18rem;">
+                <div class="card-body flex-column text-center">
+                    <h3 class="card-title mb-5">{{this.nombreComunidad}}</h3>
+                    <p class="card-text"></p>
+                    <a href="/comunidades/{{this.id}}/servicios" class="btn btn-primario pe-5 ps-5 border-0">Ver Comunidad</a>
+                </div>
+            </div>
+        {{/each}}
+        <div class="card m-5 col-4 d-inline-block p-3 shadow border-light" style="width: 18rem; background-color: rgb(233, 233, 233);">
+            <div class="card-body flex-column text-center">
+                <a href="" data-bs-toggle="modal" data-bs-target="#agregarComunidad"><img src="/img/add-img.png" class="img-fluid add-image" alt="Add"></a>
+                <!-- Modal -->
+                <div class="modal fade" id="agregarComunidad" tabindex="-1" aria-labelledby="agregarComunidadLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content pe-5 ps-5 rounded-5">
+                            <div class="modal-header mt-3">
+                                <h1 class="modal-title fs-3 w-100 text-center" id="agregarComunidadLabel">Unirse a Comunidad</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-btns d-flex justify-content-center mb-4 flex-lg-row align-items-center">
+                                <a href="/comunidades/unirse" class="btn btn-secundario ms-0 mt-lg-4 me-lg-5 border-success border-1 fs-5 pt-2 pb-2 pe-5 ps-5">Existente</a>
+                                <a href="/comunidades/crear" class="btn btn-primario ms-0 mt-lg-4 ms-lg-5 fs-5 pt-2 pb-2 pe-5 ps-5">Nueva</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> templates/base }}

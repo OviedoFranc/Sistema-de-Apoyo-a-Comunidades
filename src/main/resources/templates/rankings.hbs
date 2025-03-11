@@ -1,0 +1,17 @@
+{{#partial "contenido"}}
+    <div class="page-title text-center p-5">
+        <h1 class="white-text">Rankings</h1>
+    </div>
+    <div class="row col-12 align-items-center justify-content-center m-0">
+        {{#each rankings}}
+            <div class="card m-5 d-inline-block p-3 shadow border-light" style="width: 18rem;">
+                <div class="card-body flex-column text-center">
+                    <h3 class="card-title mb-5">{{this.nombre}}</h3>
+                    <p class="card-text"></p>
+                    <a href="/rankings/{{this.id}}" class="btn btn-primario pe-5 ps-5 border-0">Ver ranking</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{/partial}}
+{{> templates/base_pdesignada }}

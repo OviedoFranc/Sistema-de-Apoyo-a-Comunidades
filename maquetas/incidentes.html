@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid justify-content-start">
+            <button class="btn me-3 btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasStart" aria-controls="offcanvasExample">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasStart" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title fs-3" id="offcanvasExampleLabel">Menú</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="current-page nav-link active fs-5 fw-bold" aria-current="page" href="#">Comunidades</a>
+                            </li>
+                            <hr>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5 fw-bold" href="#">Servicios de Interes</a>
+                            </li>
+                            <hr>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5 fw-bold" href="#">Perfil</a>
+                            </li>
+                            <div class="cerrar-sesion">
+                                <hr class="justify-content-end">
+                                <li class="nav-item">
+                                    <a class="nav-link fs-5 fw-bold" href="#">Cerrar Sesión</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a class="logo-utn navbar-brand d-flex align-items-center" href="#">
+                <img src="img/logo_utn.png" alt="Logo" width="150" height="45" class="d-inline-block align-text-top">
+                <b class="ms-4 d-none d-lg-block">Sistema de Apoyo a Comunidades con Movilidad Reducida</b>
+            </a>
+        </div>
+    </nav>
+    <div class="page-title row-cols-auto pt-3 pe-3 ps-3 pb-5 text-center d-flex justify-content-center align-items-center flex-column">
+        <a href="#" class="volver align-self-start fs-4 text-decoration-none d-none d-lg-block"> < Volver </a>
+        <a href="#" class="volver align-self-start fs-4 text-decoration-none d-sm-block d-lg-none"><</a>
+        <h1 class="white-text">Servicio 1</h1>
+        <h5 class="white-text">Establecimiento - Entidad</h5>
+        <div class="descripcion rounded-4">
+            <p class="p-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer efficitur consequat mauris, efficitur tempus nibh rutrum et. Mauris sit amet purus purus. Donec at arcu maximus, tristique felis id, eleifend lacus. Curabitur sollicitudin tempus magna, at molestie ligula faucibus ac. Pellentesque nec ex quis tortor gravida faucibus. Donec blandit purus in iaculis porta. Donec vehicula nulla sed tincidunt porttitor. In nulla tellus, fermentum nec leo quis, blandit molestie sapien. Vivamus.</p>
+        </div>
+    </div>
+    <div class="mt-3 ms-5 me-5 text-md-start text-center">
+        <h2 class="fw-normal">Incidentes Abiertos</h2>
+        <hr>
+        <div class="row card-group text-center justify-content-sm-center justify-content-md-start">
+            <div class="card m-sm-2 m-md-4 shadow border-light rounded-4" style="max-width: 18rem; min-width: 18rem;">
+                <h3 class="card-title mt-3 h-100 align-self-center h-100">Incidente 4</h3>
+                <p class="card-text fw-bold">Informado por <span class="gray-text">Usuario</span></p>
+                <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis, turpis et tempor aliquet, magna erat efficitur dui, ac vulputate diam ligula et ante. Donec id sagittis metus. Aliquam aliquet vel urna ut congue. Etiam malesuada semper tortor, nec ultrices.</p>
+                <a href="#" class="btn btn-primario mb-4" data-bs-toggle="modal" data-bs-target="#infoIncidente">Ver Incidente</a>
+                <!-- Modal -->
+                <div class="modal fade" id="infoIncidente" tabindex="-1" aria-labelledby="infoIncidenteLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content pe-5 ps-5 rounded-5">
+                            <div class="modal-header mt-3">
+                            <h1 class="modal-title fs-3 w-100 text-center" id="infoIncidenteLabel">Incidente 1</h1>
+                            </div>
+                            <div class="modal-body">
+                                <p class="pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum gravida felis eget laoreet. Sed mauris orci, fermentum eu nunc sit amet, commodo feugiat leo. Pellentesque sit amet turpis non lectus feugiat fringilla et in tortor. Ut viverra a velit ac fermentum. Proin ligula ante, bibendum eu lorem sed, aliquam mollis mi. Integer sit amet pretium orci. Sed quam neque, semper congue dolor quis, facilisis elementum elit. Fusce elementum metus ut nulla malesuada, vitae interdum sem mattis. Nam quis mollis enim. Proin quis elementum leo. Praesent in nulla eu mauris varius ultricies ut in tellus. Aenean sed velit leo. Nulla eget lectus nisl.</p>
+                                <p class="gray-text">Informado por Usuario - 01/01/23 00:00</p>
+                            </div>
+                            <div class="modal-btns d-flex justify-content-center mb-4 flex-lg-row align-items-center">
+                            <button type="button" class="btn btn-secundario ms-0 me-lg-5 border-success border-1 fs-5 pt-2 pb-2 pe-5 ps-5" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primario ms-0 ms-lg-5 fs-5 pt-2 pb-2 pe-5 ps-5">Resuelto</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-sm-2 m-md-4 shadow border-light rounded-4 d-flex justify-content-center align-items-center" style="max-width: 18rem; min-width: 18rem; background-color: rgb(233, 233, 233); height: 452px;">
+                <a href="#"><img src="img/10250130.png" class="img-fluid add-image" alt="Add" data-bs-toggle="modal" data-bs-target="#nuevoIncidente"></a>
+            </div>
+            <div class="modal fade" id="nuevoIncidente" tabindex="-1" aria-labelledby="nuevoIncidenteLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content pe-5 ps-5 rounded-5">
+                        <div class="modal-header mt-3">
+                        <h1 class="modal-title fs-3" id="nuevoIncidenteLabel">Informar nuevo incidente</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" class="col-12">
+                                <textarea class="col-12 rounded-3 p-2" name="descripcion" id="" cols="30" rows="10" placeholder="Añade una breve descripción sobre el incidente ..." style="resize: none;"></textarea>
+                            </form>
+                        </div>
+                        <div class="modal-btns d-flex justify-content-center mb-4 flex-lg-row align-items-center">
+                        <button type="button" class="btn btn-secundario ms-0 me-lg-5 border-success border-1 fs-5 pt-2 pb-2 pe-5 ps-5" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primario ms-0 ms-lg-5 fs-5 pt-2 pb-2 pe-5 ps-5">Informar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 ms-5 me-5 text-md-start text-center">
+        <h2 class="fw-normal">Incidentes Resueltos</h2>
+        <hr>
+        <div class="row card-group text-center justify-content-sm-center justify-content-md-start">
+            <div class="card m-sm-2 m-md-4 shadow border-light rounded-4" style="max-width: 18rem; min-width: 18rem;">
+                <h3 class="card-title mt-3 h-100 align-self-center h-100">Incidente 1</h3>
+                <p class="card-text fw-bold">Informado por <span class="gray-text">Usuario</span></p>
+                <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis, turpis et tempor aliquet, magna erat efficitur dui, ac vulputate diam ligula et ante. Donec id sagittis metus. Aliquam aliquet vel urna ut congue. Etiam malesuada semper tortor, nec ultrices.</p>
+                <a href="#" class="btn btn-primario mb-4">Ver Servicio</a>
+            </div>
+            <div class="card m-sm-2 m-md-4 shadow border-light rounded-4" style="max-width: 18rem; min-width: 18rem;">
+                <h3 class="card-title mt-3 h-100 align-self-center h-100">Incidente 2</h3>
+                <p class="card-text fw-bold">Informado por <span class="gray-text">Usuario</span></p>
+                <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis, turpis et tempor aliquet, magna erat efficitur dui, ac vulputate diam ligula et ante. Donec id sagittis metus. Aliquam aliquet vel urna ut congue. Etiam malesuada semper tortor, nec ultrices.</p>
+                <a href="#" class="btn btn-primario mb-4">Ver Servicio</a>
+            </div>
+            <div class="card m-sm-2 m-md-4 shadow border-light rounded-4" style="max-width: 18rem; min-width: 18rem;">
+                <h3 class="card-title mt-3 h-100 align-self-center h-100">Incidente 3</h3>
+                <p class="card-text fw-bold">Informado por <span class="gray-text">Usuario</span></p>
+                <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis, turpis et tempor aliquet, magna erat efficitur dui, ac vulputate diam ligula et ante. Donec id sagittis metus. Aliquam aliquet vel urna ut congue. Etiam malesuada semper tortor, nec ultrices.</p>
+                <a href="#" class="btn btn-primario mb-4">Ver Servicio</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

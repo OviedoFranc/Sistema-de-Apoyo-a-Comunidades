@@ -21,7 +21,9 @@ public class RepositorioIncidentes extends Repositorio<Incidente> {
     }
     return instance;
   }
-
+  public static void setInstance(DAOHibernate<Incidente> dao) {
+    instance = new RepositorioIncidentes(dao);
+  }
   public List getActivos() {
     EntityManagerHelper.getEntityManager().getTransaction().begin();
     List resultados = EntityManagerHelper.createQuery("from Incidente where estaResuelto = :false").setParameter("false", false).getResultList();

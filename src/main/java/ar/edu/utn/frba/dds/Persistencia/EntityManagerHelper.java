@@ -16,31 +16,38 @@ public class EntityManagerHelper {
   private static ThreadLocal<EntityManager> threadLocal;
 
   static {
-    try {
-      Map<String, String> env = System.getenv();
-      Map<String, Object> configOverrides = new HashMap<String, Object>();
+    initializeFactory();
+  }
+  public static void setEntityManagerFactory(EntityManagerFactory factory) {
+    emf = factory;
+  }
+  // EntityManagerFactory por defecto lo utiliza con varialbes de entorno, caso contrario inyeccion de dependencias.
+  private static void initializeFactory() {
+    if (emf == null) {
+      try {
+        Map<String, String> env = System.getenv();
+        Map<String, Object> configOverrides = new HashMap<>();
 
-      String[] keys = new String[]{
-          "javax.persistence.jdbc.driver",
-          "javax.persistence.jdbc.password",
-          "javax.persistence.jdbc.url",
-          "javax.persistence.jdbc.user",
-          "hibernate.hbm2ddl.auto",
-          "hibernate.connection.pool_size",
-          "hibernate.show_sql"};
+        String[] keys = {
+            "javax.persistence.jdbc.driver",
+            "javax.persistence.jdbc.password",
+            "javax.persistence.jdbc.url",
+            "javax.persistence.jdbc.user",
+            "hibernate.hbm2ddl.auto",
+            "hibernate.connection.pool_size",
+            "hibernate.show_sql"
+        };
 
-      for (String key : keys) {
-        if (env.containsKey(key)) {
-          String value = env.get(key);
-          configOverrides.put(key, value);
+        for (String key : keys) {
+          if (env.containsKey(key)) {
+            configOverrides.put(key, env.get(key));
+          }
         }
 
+        emf = Persistence.createEntityManagerFactory("simple-persistence-unit", configOverrides);
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-
-      emf = Persistence.createEntityManagerFactory("simple-persistence-unit", configOverrides);
-      threadLocal = new ThreadLocal<>();
-    } catch (Exception e) {
-      e.printStackTrace();
     }
   }
 
@@ -74,9 +81,9 @@ public class EntityManagerHelper {
   public static void closeEntityManager() {
     EntityManager em = threadLocal.get();
     if(em != null) {
-      threadLocal.set(null);
       em.close();
     }
+    threadLocal.remove();
   }
 
   public static void closeEntityManagerFactory() {

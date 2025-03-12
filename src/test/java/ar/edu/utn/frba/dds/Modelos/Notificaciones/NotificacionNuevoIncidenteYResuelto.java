@@ -17,14 +17,25 @@ import ar.edu.utn.frba.dds.Modelos.Servicio;
 import ar.edu.utn.frba.dds.Modelos.UbicacionDTO.Localidad;
 import ar.edu.utn.frba.dds.Modelos.Usuarios.Rol;
 import ar.edu.utn.frba.dds.Modelos.Usuarios.Usuario;
+import ar.edu.utn.frba.dds.Persistencia.EntityManagerHelper;
+import ar.edu.utn.frba.dds.Persistencia.repositorios.RepositorioIncidentes;
+import ar.edu.utn.frba.dds.Persistencia.repositorios.daos.DAOHibernate;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 public class NotificacionNuevoIncidenteYResuelto {
+  protected EntityManagerFactory emf;
+  protected DAOHibernate<Incidente> dao;
+  protected EntityManager em;
   Persona pepe;
   Persona jose;
   Servicio unServicio;
@@ -32,7 +43,13 @@ public class NotificacionNuevoIncidenteYResuelto {
 
   @BeforeEach
   public void init() throws Exception {
-    MedioNotificacionesEmail medioDeContactoPepe = mock(MedioNotificacionesEmail.class); //new ContactoEmail("pepe@gmail.com");
+    emf = Persistence.createEntityManagerFactory("test-persistence-unit");
+    EntityManagerHelper.setEntityManagerFactory(emf);
+
+    dao = new DAOHibernate<>(Incidente.class);
+    RepositorioIncidentes.setInstance(dao);
+
+    MedioNotificacionesEmail medioDeContactoPepe = mock(MedioNotificacionesEmail.class);
     SinApuros configPepe = new SinApuros(medioDeContactoPepe);
     configPepe.agregarHorario(LocalTime.now().plus(10, ChronoUnit.SECONDS));
     configPepe.agregarHorario(LocalTime.of(20,30,0));
@@ -47,7 +64,7 @@ public class NotificacionNuevoIncidenteYResuelto {
     }).when(medioDeContactoPepe).notificar(any(Notificacion.class));
 
 
-    MedioDeNotificacionesPreferido medioDeContactoJose = mock(MedioNotificacionesEmail.class); //new ContactoEmail("jose@gmail.com");
+    MedioDeNotificacionesPreferido medioDeContactoJose = mock(MedioNotificacionesEmail.class);
     CuandoSuceden configJose = new CuandoSuceden(medioDeContactoJose);
 
     doAnswer(invocationOnMock -> {
@@ -74,7 +91,16 @@ public class NotificacionNuevoIncidenteYResuelto {
     comunidad.agregarServicioDeInteres(unServicio);
 
   }
-
+  @AfterEach
+  public void tearDown() {
+    if (em != null) {
+      em.close();
+    }
+    if (emf != null) {
+      emf.close();
+    }
+    EntityManagerHelper.closeEntityManager();
+  }
   @Test
   public void seEnvianLasNotificacionesAlAbrirUnIncidente() throws InterruptedException {
     Incidente incidente = new Incidente(null, "La escalera mecanica del segundo piso no esta en funcionamiento", pepe, unServicio, comunidad);

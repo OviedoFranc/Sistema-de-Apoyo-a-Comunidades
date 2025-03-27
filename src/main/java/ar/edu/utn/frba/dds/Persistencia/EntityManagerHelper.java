@@ -25,24 +25,14 @@ public class EntityManagerHelper {
   private static void initializeFactory() {
     if (emf == null) {
       try {
-        Map<String, String> env = System.getenv();
         Map<String, Object> configOverrides = new HashMap<>();
 
-        String[] keys = {
-            "javax.persistence.jdbc.driver",
-            "javax.persistence.jdbc.password",
-            "javax.persistence.jdbc.url",
-            "javax.persistence.jdbc.user",
-            "hibernate.hbm2ddl.auto",
-            "hibernate.connection.pool_size",
-            "hibernate.show_sql"
-        };
-
-        for (String key : keys) {
-          if (env.containsKey(key)) {
-            configOverrides.put(key, env.get(key));
-          }
-        }
+        configOverrides.put("javax.persistence.jdbc.driver", System.getenv("jdbcDriver"));
+        configOverrides.put("javax.persistence.jdbc.password", System.getenv("jdbcPassword"));
+        configOverrides.put("javax.persistence.jdbc.url", System.getenv("jdbcUrl"));
+        configOverrides.put("javax.persistence.jdbc.user", System.getenv("jdbcUser"));
+        configOverrides.put("hibernate.hbm2ddl.auto", System.getenv("hibernateDDL"));
+        configOverrides.put("hibernate.connection.pool_size", System.getenv("hibernatePoolSize"));
 
         emf = Persistence.createEntityManagerFactory("simple-persistence-unit", configOverrides);
       } catch (Exception e) {

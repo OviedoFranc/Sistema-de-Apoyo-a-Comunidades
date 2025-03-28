@@ -342,9 +342,6 @@ public class CargadorDatos {
     EntityManagerHelper.persist(incidente3);
 
     EntityManagerHelper.commit();
-
     EntityManagerHelper.closeEntityManager();
-    EntityManagerHelper.closeEntityManagerFactory();
-
   }
 }
